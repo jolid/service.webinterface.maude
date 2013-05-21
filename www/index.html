@@ -1,0 +1,231 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<title>Maude</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.2.0.min.css" />
+	<script src="jquery.mobile/jquery-1.8.2.min.js"></script>
+	<script src="jquery.mobile/jquery.mobile-1.2.0.min.js"></script>
+	<script src="lib.js"></script>
+<style>
+.ui-page.ui-body-c {
+    background: url(images/backdrop.jpg);
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover;  
+}
+
+#subscriptionPanel-popup {
+    right: 0 !important;
+    left: auto !important;
+}
+#subscriptionPanel {
+    width: 200px;
+    border: 1px solid #000;
+    border-right: none;
+    background: rgba(0,0,0,.5);
+    margin: -1px 0;
+}
+#subscriptionPanel .ui-btn {
+    	margin: 0px;
+	margin-left: 15px;
+	margin-right: 15px;
+}	
+
+</style>
+</head> 
+<body> 
+	<div data-role="page" id="home">
+		<div data-role="header">
+			<h1>Maude</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" class="ui-btn-active ui-state-persist">Home</a></li>
+					<li><a href="#tvshows">TV Shows</a></li>
+					<li><a href="#movies">Movies</a></li>
+					<li><a href="#settings">Settings</a></li>
+					<li><a href="#log">XBMC.log</a></li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="content">	
+		</div>
+	</div>
+
+	<div data-role="page" id="tvshows">
+		<div data-role="header">
+			<a href="#home" data-theme="c" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+			<h1>Maude</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#tvshows" class="ui-btn-active ui-state-persist">TV Shows</a></li>
+					<li><a href="#movies">Movies</a></li>
+					<li><a href="#settings">Settings</a></li>
+					<li><a href="#log">XBMC.log</a></li>
+				</ul>
+			</div>
+			<a href="#subscribeSearch" data-theme="b" data-icon="add" data-direction="reverse">Add</a>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-filter="true" data-filter-placeholder="Search subscriptions..." data-filter-theme="d" data-theme="d" data-divider-theme="d" id="subscriptionList">	
+			</ul>
+
+		</div>
+			
+		<div data-role="popup" id="subscriptionPanel" data-corners="false" data-theme="none" data-shadow="false" data-tolerance="0,0">	<fieldset data-role="controlgroup" data-type="veritcal">
+
+			    	<button id="UpdateSubscriptionButton" data-theme="c" data-icon="check" data-mini="true">Update Subscription</button>
+				<div class="ui-body ui-body-c" data-corners="true" style="margin-left: 15px; margin-right:15px; font-size: 12px;">
+					<div>Show: <div id="SubscriptionNameInfo" style="margin-left: 5px; color:blue;"></div></div>
+					<div>Providers: <div id="SubscriptionProvidersInfo" style="margin-left: 5px; color:blue;"></div></div>
+				</div>
+				<button id="MergeSubscriptionButton" data-theme="c"  data-icon="gear" data-mini="true">Merge Subscription</button>
+			    	<button id="DeleteSubscriptionButton"data-theme="c"  data-icon="delete" data-mini="true">Delete Subscription</button>
+				<input type="checkbox" name="checkbox-0" id="EnabelSubscriptionCheckbox" data-theme="c" data-mini="true" checked />
+				<label for="EnabelSubscriptionCheckbox">Enable Subscription</label>
+
+			</fieldset>		 
+		</div>
+
+
+	</div>
+
+
+	<div data-role="page" id="subscribeSearch">
+		<div data-role="header">
+			<a href="#tvshows" data-theme="b" data-icon="back" data-iconpos="notext" data-direction="reverse">Back</a>
+			<h1>Maude: Search for TV Shows</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" >Home</a></li>
+					<li><a href="#tvshows" class="ui-btn-active ui-state-persist">TV Shows</a></li>
+					<li><a href="#movies">Movies</a></li>
+					<li><a href="#settings">Settings</a></li>
+					<li><a href="#log">XBMC.log</a></li>
+				</ul>
+			</div>
+		</div>
+		<input type="search" data-theme="d" name="subscriptionSearch" id="subscriptionSearch" value="" placeholder="Serach for Shows..."/>
+		<ul data-role="listview" id="subscriptionResults">
+		</ul>
+
+	</div>
+
+	<div data-role="page" id="movies">
+		<div data-role="header">
+			<a href="#home" data-theme="c" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+			<h1>Maude</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#tvshows">TV Shows</a></li>
+					<li><a href="#movies"  class="ui-btn-active ui-state-persist">Movies</a></li>
+					<li><a href="#settings">Settings</a></li>
+					<li><a href="#log">XBMC.log</a></li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="content">
+		<ul data-role="listview" id="">
+			<li><a href="#moviesAZ">A-Z</a></li>
+			<li><a href="#moviesSearch">Search Movies</a></li>	
+		</ul>
+		</div>
+	</div>
+	<div data-role="page" id="moviesSearch">
+		<div data-role="header">
+			<a href="#movies" data-theme="c" data-icon="back" data-iconpos="notext" data-direction="reverse">Back</a>
+			<h1>Maude</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#tvshows">TV Shows</a></li>
+					<li><a href="#movies"  class="ui-btn-active ui-state-persist">Movies</a></li>
+					<li><a href="#settings">Settings</a></li>
+					<li><a href="#log">XBMC.log</a></li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="content">
+		<input type="search" data-theme="d" name="subscriptionSearchField" id="subscriptionSearchField" value="" placeholder="Serach for Movies..."/>
+		<ul data-role="listview" id="subscriptionSearchResults">
+		</ul>
+		</div>
+	</div>
+	<div data-role="page" id="settings">
+
+		<div data-role="header">
+			<a href="#home" data-theme="c" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+			<h1>Maude: Settings</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" >Home</a></li>
+					<li><a href="#tvshows">TV Shows</a></li>
+					<li><a href="#movies">Movies</a></li>
+					<li><a href="#settings" class="ui-btn-active ui-state-persist">Settings</a></li>
+					<li><a href="#log">XBMC.log</a></li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="content">
+			<div data-role="collapsible-set" data-content-theme="c" id="set">
+			    <div data-role="collapsible" id="settingsstuff1" data-collapsed="false">
+				<h3>The Royal We Settings</h3>
+				<p>
+				<fieldset data-role="controlgroup">
+					<legend>General:</legend>
+					<input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a">
+					<label for="checkbox-v-2a">Enable Silent Updates</label>
+					<input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b">
+					<label for="checkbox-v-2b">Enable Autoplay</label>
+					<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
+					<label for="checkbox-v-2c">Enable Link Ranking</label>
+					<input type="checkbox" name="checkbox-v-2d" id="checkbox-v-2d">
+					<label for="checkbox-v-2d">Enable Mirror Caching</label>
+					<label for="number-1">Cached Mirrors Expire In (Hours)</label>
+     					<input type="number" data-clear-btn="false" name="number-1" id="number-1" value="">
+				</fieldset>
+				</p>
+			    </div>
+			 <div data-role="collapsible" id="settingsstuff1" data-collapsed="true">
+				<h3>Donnie Settings</h3>
+				<p>I'm the collapsible content.</p>
+			    </div>
+			</div>
+		</div>
+
+	</div>
+	<div data-role="page" id="log">
+
+		<div data-role="header">
+			<a href="#home" data-theme="c" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+			<h1>Maude: XBMC.log</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#home" >Home</a></li>
+					<li><a href="#tvshows">TV Shows</a></li>
+					<li><a href="#movies">Movies</a></li>
+					<li><a href="#settings">Settings</a></li>
+					<li><a href="#log" class="ui-btn-active ui-state-persist">XBMC.log</a></li>
+				</ul>
+			</div>
+		</div>
+		<div data-role="content">
+
+			<div class="ui-body ui-body-a" style="padding:2px;">
+				<h3>
+				<div data-role="controlgroup" data-type="horizontal" data-mini="true" style="text-align:center;"><a href="#" data-role="button" data-inline="true" data-theme="c">Download</a> <a href="#" data-role="button" data-inline="true" data-theme="c">Upload to xbmclogs</a></div>
+				</h3>
+				<div id="logcontent" class="ui-body ui-body-c">
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+</body>
+</html>

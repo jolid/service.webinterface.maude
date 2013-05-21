@@ -1,0 +1,9 @@
+<settings>
+	<category label="Service">
+		<setting id="server-enable" type="bool" label="Enable WebInterface" default="false"/>
+		<setting id="server-port" type="number" label="Server Port" default="8181" enable="!eq(-1,false)"/>
+		<setting id="server-authentication" type="bool" label="Enable Authentication" default="false" enable="!eq(-2,false)"/>
+		<setting id="server-username" type="text" label="   Username" default="Maude" enable="!eq(-1,false)"/>
+     		<setting id="server-password" type="text" label="   Password" default="Lebowski" option="hidden" enable="!eq(-2,false)"/>
+	</category>
+</settings>

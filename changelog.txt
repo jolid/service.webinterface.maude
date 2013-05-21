@@ -1,0 +1,7 @@
+[B]Version 0.0.2[/B]
+-Windows startup fix
+-XBMC.log view
+
+[B]Version 0.0.1[/B]
+-Initial service implementation
+-Launches web interface for management of The Royal We
